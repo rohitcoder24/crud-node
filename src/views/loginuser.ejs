@@ -1,0 +1,41 @@
+<%- include('components/head') %>
+<div class="container">
+  <div class="row mt-5">
+      <div class="  mx-auto  py-4 col-md-4 text-center border border-2 shadow-lg">
+          <form action="api/read/login" method="post"  id="loginForm">
+            <div class="form-login"></br>
+              <h4> Login</h4>
+              </br>
+              <div class="form-floating mb-3">
+                <input type="email" class="form-control" id="username" name="username" placeholder="name@example.com">
+                <label for="username">Email address</label>
+              </div>
+
+              <div class="form-floating mb-5">
+                <input type="password" class="form-control" id="password" name="password" placeholder="name@example.com">
+                <label for="password">Password</label>
+              </div>
+              <div class="wrapper d-flex justify-content-between ">
+                     
+                     
+                    <span class="">
+                      <a href="sign-in" class="btn btn-danger  shadow-lg btn-md">sing in<i class="fa fa-sign-in"></i></a>
+                  </span>
+                  <span class="">
+                    <input type="submit" class="btn btn-primary shadow-lg btn-md">
+                </span>
+              </div>
+          </div>
+        </form>
+      </div>
+  </div>
+  </br></br></br>
+  <!--footer-->
+  <!-- <div class="footer text-white text-center">
+      <p>© 2020 Unique Login Form. All rights reserved | Design by <a href="https://freecss.tech">Free Css</a></p>
+  </div> -->
+  <!--//footer-->
+</div>
+
+<%- include('components/scripts') %>
+    

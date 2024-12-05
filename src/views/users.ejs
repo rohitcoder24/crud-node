@@ -1,0 +1,128 @@
+<%- include('components/head') %>
+<%- include('components/header') %>
+<div class="container">
+    <div class="row justify-content-between">
+        <div class="col-auto">
+            <h1>Users</h1>
+        </div>
+
+        <div class="col-auto">
+            <button class="btn btn-primary create-modal" data-url="user" data-bs-toggle="modal" data-bs-target="#user-modal"><i class="bi bi-plus"></i></button>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12">
+            <table class="table" id="users-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <% users.forEach(function(user){ %> 
+                        <tr id="row-<%= user.id %>">
+                            <td><%= user.name %></td>
+                            <td><%= user.mobile %></td>
+                            <td><%= user.email %></td>
+                            <td>
+                                <i data-url='user?id=<%= user.id %>' class="bi bi-pencil text-info edit"></i>
+                                <i data-url='user?id=<%= user.id %>' class="bi bi-trash3 text-danger delete-row"></i>
+                            </td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<!-- Pagination Controls -->
+<div class="container">
+    <div class="row">
+        <div class="col-8 text-center">
+            <nav aria-label="User Pagination">
+                <ul class="pagination">
+                    <!-- Previous Button -->
+                    <% if (currentPage > 1) { %>
+                        <li class="page-item">
+                            <a class="page-link" href="?page=<%= currentPage - 1 %>&limit=<%= 10 %>" aria-label="Previous">
+                                <span aria-hidden="true">&laquo;</span>
+                                
+                            </a>
+                        </li>
+                    <% } else { %>
+                        <li class="page-item disabled">
+                            <span class="page-link" aria-hidden="true">&laquo;</span>
+                        </li>
+                    <% } %>
+
+                    <!-- Page Numbers -->
+                    <% for (let i = 1; i <= totalPages; i++) { %>
+                        <li class="page-item <%= i === currentPage ? 'active' : '' %>">
+                            <a class="page-link" href="?page=<%= i %>&limit=<%= 10 %>"><%= i %></a>
+                        </li>
+                    <% } %>
+
+                    <!-- Next Button -->
+                    <% if (currentPage < totalPages) { %>
+                        <li class="page-item">
+                            <a class="page-link" href="?page=<%= currentPage + 1 %>&limit=<%= 10 %>" aria-label="Next">
+                                <span aria-hidden="true">&raquo;</span>
+                            </a>
+                        </li>
+                    <% } else { %>
+                        <li class="page-ite m disabled">
+                            <span class="page-link" aria-hidden="true">&raquo;</span>
+                        </li>
+                    <% } %>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-2">
+            <a href="/logout" class="btn btn-danger">Logout</a>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for Creating User -->
+<div class="modal fade" id="user-modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" action="/api/create/user">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">User <span>Create</span></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label class="form-label">Name</label>
+                        <input type="text" name="name" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Mobile</label>
+                        <input type="number" name="mobile" class="form-control">
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label">Email</label>
+                        <input type="email" name="email" class="form-control">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<%- include('components/scripts') %>

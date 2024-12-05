@@ -1,0 +1,38 @@
+<%- include('components/head') %>
+<div class="row mx-auto">
+  <div class="col-md-4   border mt-5 m mx-auto">
+
+    <h2 class="text-center m-4">Login</h2>
+     <form action="api/create/sign-in" method="post" id="singForm">
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" name="name" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Name</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="email" class="form-control"   name="email" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Email(user Name)</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control"   name="password" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Password</label>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control"   name="confirm_password" id="floatingInput" placeholder="name@example.com">
+        <label for="floatingInput">Confirm Password</label>
+      </div>
+      <div class="mb-5 mt-3">
+        <div class="row mt-3 d-flex justify-content-between">
+          <div class="col-auto">
+            <a  href='/'class="btn btn-primary"> Login page</a>
+          </div>
+          <div class="col-auto">
+            <input type="submit" class="btn btn-success">
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<%- include('components/scripts') %>
+    
